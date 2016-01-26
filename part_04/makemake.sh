@@ -5,13 +5,25 @@
 
 if test $# = 1
 then
-	printf "$1:" >> ./Makefile
+	printf "$1:" > ./Makefile
 	for file in *.cpp
 	do
-		printf "${file%.cpp}.o" > ./Makefile
+		printf " ${file%.cpp}.o" >> ./Makefile
 	done
 
+	printf "\n\tg++ -g -ansi -Wall -o $1" >> ./Makefile
+	for file in *.cpp
+	do
+		printf " ${file%.cpp}.o" >> ./Makefile
+	done
+	printf "\n" >> ./Makefile
 
+	for file in *.cpp
+	do
+		printf "${file%.cpp}.o : ${file}" >> ./Makefile
+		printf "\n" >> ./Makefile
+		printf "\tg++ -c -ansi -Wall ${file}\n" >> ./Makefile
+	done
 else
 	echo "The project name must be included as an argument"
 fi
