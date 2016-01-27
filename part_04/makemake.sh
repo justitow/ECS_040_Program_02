@@ -21,9 +21,15 @@ then
 	for file in *.cpp
 	do
 		printf "${file%.cpp}.o : ${file}" >> ./Makefile
+		grep -e "#include \"" $file | while read -r line ; do
+			line=${line#\#include \"}
+			line=${line%\"}
+			printf " $line" >> ./Makefile
+		done
 		printf "\n" >> ./Makefile
 		printf "\tg++ -c -ansi -Wall ${file}\n" >> ./Makefile
 	done
+	printf "clean:\n\t rm *.o $1" >> ./Makefile
 else
 	echo "The project name must be included as an argument"
 fi
