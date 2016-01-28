@@ -7,7 +7,7 @@ then
 	do
 		echo -en "Displaying first 3 lines of $file:\n"
 		head -n3 $file
-		echo -en "\nDelete the file $file? (y/n) "
+		echo -en "\nDelete file $file? (y/n) "
 		read  yn
 		case $yn in
 			[Yy]* ) rm $file;
@@ -19,7 +19,7 @@ else
 	do
 		echo  -en "Displaying first 3 lines of $file:\n"
 		head -n3 $file
-		echo -en"\nDelete the file $file? (y/n) "
+		echo -en"\nDelete file $file? (y/n) "
 		read yn
 		case $yn in
 			[Yy]* ) rm $file;
