@@ -13,7 +13,7 @@ then
 			[Yy]* ) rm $file;
 		esac	
 	done
-	echo -en "\n"
+	echo -en " \n"
 else
 	for file in $@
 	do
@@ -25,4 +25,5 @@ else
 			[Yy]* ) rm $file;
 		esac
 	done
+	echo -en " "
 fi
